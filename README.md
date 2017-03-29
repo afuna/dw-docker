@@ -17,9 +17,9 @@ Change the password! Note: it's only used here once; everywhere else refers to i
 * Clone repository onto your computer
 * Set your LJHOME variable to where your repository was cloned
 
-## (FIRST RUN) Setup database
+## (FIRST RUN) Initial setup: configs, database
     docker run --entrypoint "/bin/bash" -it -v $LJHOME:/dw --link mysql-db:db --rm dreamwidth/web
-    > /opt/init-db.sh
+    > /opt/init.sh
 
 ## Start Dreamwidth web server
 This is not exposed until we run the nginx server below.
