@@ -14,19 +14,19 @@ RUN apt-get update; apt-get -y install curl fish tmux screen vim snmpd git net-t
 # We pull down the configuration build repository, which will ultimately do
 # most of the work for us. We just need Docker to manage the layers and saving
 # them at each step of the way to save us some time.
-RUN git clone https://github.com/xb95/dw-docker.git /dw-docker
+RUN git clone https://github.com/zorkian/dw-docker.git /dw-docker
 
 
 # Configure timezone for later.
 RUN echo "Etc/UTC" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata
 
 # Percona and Varnish signing keys.
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A; gpg -a --export CD2EFD2A | apt-key add -
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 8507EFA5; gpg -a --export 8507EFA5 | apt-key add -
 RUN curl http://repo.varnish-cache.org/debian/GPG-key.txt | apt-key add -
 
 # Continue installing packages. This is done in two steps because we need
 # curl to get the Varnish key, so we had to do that first.
-RUN apt-get update; apt-get -y install libapreq2-dev apache2-mpm-prefork libapache2-mod-perl2-dev libxml2-dev libgdbm-dev apache2-prefork-dev perlmagick libgtop2-dev libpari-dev libmath-gmp-perl libmath-bigint-perl libmath-bigint-gmp-perl libperl-dev libapache2-request-perl libcrypt-dh-gmp-perl libnet-openid-consumer-perl libnet-openid-server-perl libgd-gd2-perl libgd-graph-perl libdbd-mysql-perl percona-server-client-5.5 perl-doc varnish make libcrypt-dh-perl
+RUN apt-get update; apt-get -y install libapreq2-dev apache2-mpm-prefork libapache2-mod-perl2-dev libxml2-dev libgdbm-dev apache2-prefork-dev perlmagick libgtop2-dev libpari-dev libmath-gmp-perl libmath-bigint-perl libmath-bigint-gmp-perl libperl-dev libapache2-request-perl libcrypt-dh-gmp-perl libnet-openid-consumer-perl libnet-openid-server-perl libgd-gd2-perl libgd-graph-perl libdbd-mysql-perl percona-server-client-5.7 perl-doc varnish make libcrypt-dh-perl
 
 # Set up cpanm and then the modules that Dreamwidth wants.
 RUN curl -L http://cpanmin.us | perl - App::cpanminus
