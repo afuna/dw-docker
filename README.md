@@ -67,8 +67,7 @@ Wiki has additional information for [proxy setup](http://wiki.dreamwidth.net/wik
     docker stop mysql-db dw-web
 
 ## Connecting to your webserver
-    curl 127.0.0.1             # not mac
-    curl `boot2docker ip`      # mac
+    curl 127.0.0.1
 
 # Testing
 ## Connect to mysql from a test container
@@ -104,6 +103,3 @@ You'll also want to add `hack.dw`, to your `/etc/hosts` file. Example:
 
     # your test user accounts
     127.0.0.1 testuser.hack.dw some-community.hack.dw
-
-
-If you're on a Mac, use the result of `boot2docker ip` instead of `127.0.0.1`.

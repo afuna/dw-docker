@@ -9,4 +9,4 @@ if [[ ! -L $LJHOME/extlib ]]; then
     ln -s /extlib $LJHOME/extlib
 fi
 
-./init-db.sh
+`dirname $0`/init-db.sh
